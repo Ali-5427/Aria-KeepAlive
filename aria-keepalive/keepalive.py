@@ -28,11 +28,12 @@ def start_pinger():
     while True:
         try:
             r = requests.post(
-                f"{KAGGLE_URL}/api/chat",
+                f"{KAGGLE_URL}/api/generate",
                 json={
                     "model": MODEL_NAME,
-                    "messages": [{"role": "user", "content": "hi"}],
-                    "stream": False
+                    "prompt": "hi",
+                    "stream": False,
+                    "keep_alive": "10m"
                 },
                 headers=headers,
                 timeout=25
